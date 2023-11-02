@@ -1,0 +1,119 @@
+
+<div class="container mt-2" *ngIf="!mostrarInformacion">
+
+    <div class="row">
+      <p class="volver" (click)="volver()">Volver</p>
+    <form [formGroup]="simulator" (ngSubmit)="onSubmit()">
+        <div class="col-12 text-center mt-5">
+        <mat-label class="mat-label">¿Cuál es el valor comercial de la vivienda?</mat-label><br>
+        <mat-form-field  class="custom-form-field mt-3"  floatLabel="always">
+            <input matInput type="number" class="example-right-align" placeholder="0" formControlName="loanTotal">
+            <span matTextPrefix>$&nbsp;</span>
+        </mat-form-field>
+        </div>
+
+        <div class="col-12 mt-5 text-center">
+            <mat-label class="mat-label">¿A cuántos años?</mat-label><br>
+              <mat-form-field appearance="outline" class="custom-form-field mt-3">
+                <mat-select formControlName="termUnit">
+                  <mat-option *ngFor="let option of plazoOptions" [value]="option">
+                  {{ option }}
+                </mat-option>
+                </mat-select>
+                  </mat-form-field>   
+        </div>
+  
+        <div class="col-12 text-center mt-5">
+
+        <button class="button_simular" mat-raised-button color="primary" [disabled]="!simulator.valid">SIMULAR</button>
+        </div>
+    </form>
+</div>
+
+</div>  
+
+<div class="result-container" *ngIf="simulator.valid">
+  <!-- Resultados delwwwww formulario -->
+</div>
+
+<div *ngIf="mostrarInformacion" class="mostrarInfo">
+  <!-- Mostrar la información de la respuesta de la API aquí -->
+  <i class="fa-solid fa-backward atras" (click)="mostrarInformacion=false"></i>
+  <mat-card class="custom-card-detalles flex">
+    <mat-card-content class="custom-card-content-detalles" >Detalle de pagos</mat-card-content>
+
+    <div class="div-inline">
+      <i class="fa-solid fa-house"></i>
+      <div class="contenido">
+        <p class="etiqueta">Valor de la vivienda:</p>
+        <p class="valor">{{ loanTotal| currency}}</p>
+      </div>
+    </div>
+
+    <div class="div-inline">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div class="contenido">
+        <p class="etiqueta">Plazo de:</p>
+        <p class="valor">{{responseSimulator.plan.termUnit}} años</p>
+      </div>
+    </div>
+
+    <div class="div-inline final">
+      <i class="fa-solid fa-percent"></i>
+      <div class="contenido">
+        <p class="etiqueta">Tasa efectiva mensual:</p>
+        <p class="valor">{{responseSimulator.plan.monthlyInterestRate}}% </p>
+      </div>
+      
+    </div>
+    
+ 
+
+  </mat-card>
+
+  <div class="tabla-container">
+    <div class="select-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Año</mat-label>
+        <mat-select (selectionChange)="changeYear($event)">
+        <mat-option *ngFor="let year of getAvailableYears()" [value]="year">{{ year }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  <table mat-table [dataSource]="filteredPlanDetail" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <ng-container matColumnDef="feeNumber">
+      <th mat-header-cell *matHeaderCellDef> Mes</th>
+      <td mat-cell *matCellDef="let element; let i = index"> Mes {{ i + 1 }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="paymentToCapital">
+      <th mat-header-cell *matHeaderCellDef> Abono a capital </th>
+      <td mat-cell *matCellDef="let element"> {{element.paymentToCapital | currency}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="feeInterest">
+      <th mat-header-cell *matHeaderCellDef> Intereses </th>
+      <td mat-cell *matCellDef="let element"> {{element.feeInterest | currency}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="feeWithoutInsurance">
+      <th mat-header-cell *matHeaderCellDef> Cuota mensual </th>
+      <td mat-cell *matCellDef="let element"> {{element.feeWithoutInsurance | currency}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="debtBalance">
+      <th mat-header-cell *matHeaderCellDef> Saldo deuda </th>
+      <td mat-cell *matCellDef="let element"> {{element.debtBalance | currency}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+
+</div>

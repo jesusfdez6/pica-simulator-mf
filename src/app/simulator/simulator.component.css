@@ -1,0 +1,151 @@
+.mat-label{
+    font-size: 20px; 
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.custom-form-field {
+    width: 400px; 
+  }
+
+ 
+  .button_simular{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .button_simular {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px; 
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+
+  }
+
+
+.custom-card {
+    width: 100%; 
+    height: 10%;
+    margin: 0 auto;
+  }
+
+  .custom-card-detalles {
+    background: #59cbe8;
+    width: 25%; 
+    margin-left: 3%; 
+    margin-top: 4%;
+    box-sizing: border-box; 
+    height: 20%;
+
+  }
+  
+
+  .custom-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 20px; 
+    font-weight: bold; 
+      
+  }
+
+  .custom-card-content-detalles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 35px; 
+    font-weight: 350; 
+      
+  }
+
+  .container-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+  }
+
+  .custom-form-field {
+    width: 500px; 
+  }
+
+
+
+
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px; 
+  }
+
+  .etiqueta {
+    margin-bottom: 1px;
+  }
+  
+  .valor {
+    margin-top: 0; 
+    margin-bottom: 0;
+    font-size: 19px;
+  }
+
+  i {
+    font-size: 35px;
+  }
+
+  .div-inline {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+    margin-left: 15px;
+
+  }
+
+  .contenido {
+    margin-left: 10px;
+    font-size: 16px;
+    font-family: OpenSans,sans-serif;
+  }
+
+  .contenido p {
+    line-height: 21px;
+  }
+
+  .final {
+    margin-bottom: 5%;
+  }
+
+  .mostrarInfo {
+      display: flex;
+      gap: 20px;
+  }
+
+  .mat-elevation-z8 {
+    width: 100%; 
+  
+  }
+  .tabla-container {
+    flex: 1; 
+    margin-top: 4%;
+    margin-right: 3%;
+  }
+
+  .atras{
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+
+  .volver{
+    float: left;
+    color: #0048db;
+    font-weight: 400;
+    margin-right: 5px;
+    display: inline-flex;
+    cursor: pointer;
+}
